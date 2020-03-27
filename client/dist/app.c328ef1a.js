@@ -66728,10 +66728,11 @@ function Login() {
       password: loginValues.password
     }).then(function (res) {
       console.log(res);
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem('token', res.data.token);
       pageHistory.push('/jokes');
     }).catch(function (err) {
-      return console.error(err);
+      setLoginValues(initialValues);
+      console.error(err);
     });
   };
 
@@ -67045,7 +67046,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39949" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42377" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

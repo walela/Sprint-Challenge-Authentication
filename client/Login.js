@@ -34,10 +34,13 @@ export default function Login() {
       })
       .then(res => {
         console.log(res)
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem('token', res.data.token)
         pageHistory.push('/jokes')
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        setLoginValues(initialValues)
+        console.error(err)
+      })
   }
 
   return (

@@ -53,7 +53,7 @@ algorithm.
 it is deliberately slow and memory intensive to prevent brute force attacks. it also includes a random
 salt when hashing to protect against rainbow tables method of reverse engineering passwords.
 
-- [x] What are the three parts of the JSON Web Token?
+- [x] What are the three parts of the JSON Web Token?git 
 
 header, payload, signature
 
