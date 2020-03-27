@@ -66909,6 +66909,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _axiosWithAuth = _interopRequireDefault(require("./axiosWithAuth"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _core = require("@chakra-ui/core");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -66937,30 +66939,52 @@ function Jokes() {
       jokes = _useState2[0],
       setJokes = _useState2[1];
 
+  var pageHistory = (0, _reactRouterDom.useHistory)();
   (0, _react.useEffect)(function () {
     (0, _axiosWithAuth.default)().get(api).then(function (res) {
       return setJokes(res.data);
     }).catch(function (err) {
       return console.error(err);
     });
-  }, [jokes]);
+  }, []);
+
+  var handleSignout = function handleSignout() {
+    localStorage.removeItem('token');
+    pageHistory.push('/login');
+  };
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_core.Grid, {
+    w: "960px",
+    margin: "0 auto",
     templateColumns: "repeat(1, 1fr)",
     gap: 3
-  }, /*#__PURE__*/_react.default.createElement(_core.Box, {
+  }, /*#__PURE__*/_react.default.createElement(_core.Flex, {
     w: "100%",
-    h: "10",
-    bg: "blue.200"
-  }), jokes.map(function (joke) {
+    h: "16",
+    bg: "gray.200",
+    justify: "space-between",
+    p: "12px"
+  }, /*#__PURE__*/_react.default.createElement(_core.Heading, {
+    fontFamily: "Domine"
+  }, "Dad Jokes"), /*#__PURE__*/_react.default.createElement(_core.Button, {
+    variantColor: "facebook",
+    onClick: handleSignout
+  }, ' ', "Sign Out")), jokes.map(function (joke) {
     return /*#__PURE__*/_react.default.createElement(_core.Box, {
       key: joke.id,
       w: "100%",
+      fontFamily: "Domine",
+      fontWeight: "bold",
       h: "12",
-      bg: "blue.200"
+      boxShadow: "2px 3px 2px grey",
+      bg: "blue.200",
+      borderRadius: "4px",
+      textAlign: "center",
+      p: "2"
     }, joke.joke);
   })));
 }
-},{"react":"node_modules/react/index.js","./axiosWithAuth":"axiosWithAuth.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"app.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./axiosWithAuth":"axiosWithAuth.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
