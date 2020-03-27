@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link as RRLink, useHistory } from 'react-router-dom'
 import axios from './axiosWithAuth'
-import { FormControl, Heading, Stack, Input, Button } from '@chakra-ui/core'
+import {
+  FormControl,
+  Heading,
+  Stack,
+  Input,
+  Link,
+  Button
+} from '@chakra-ui/core'
 
-export default function Login(props) {
+export default function Login() {
   const initialValues = {
-    email: '',
+    username: '',
     password: ''
   }
   const [loginValues, setLoginValues] = useState(initialValues)
@@ -19,16 +26,16 @@ export default function Login(props) {
   }
 
   const handleSubmit = e => {
+    e.preventDefault()
     axios()
       .post('http://localhost:3300/api/auth/login', {
-        email: loginValues.username,
+        username: loginValues.username,
         password: loginValues.password
       })
       .then(res => {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('userId', res.data.user.id)
-        localStorage.setItem('firstname', res.data.user.first_name)
-        pageHistory.push('/todos')
+        console.log(res)
+        localStorage.setItem("token", res.data.token)
+        pageHistory.push('/jokes')
       })
       .catch(err => console.error(err))
   }
@@ -46,7 +53,7 @@ export default function Login(props) {
       <Heading fontFamily='Domine' textAlign='center'>
         Login
       </Heading>
-      <form onSubmit={props.onSubmit}>
+      <form>
         <FormControl>
           <Stack spacing={5}>
             <Input
@@ -72,6 +79,16 @@ export default function Login(props) {
               onClick={handleSubmit}>
               Login
             </Button>
+            <Link
+              as={RRLink}
+              to='/'
+              fontFamily='Kurale'
+              fontWeight='bold'
+              fontSize='18px'
+              textAlign='center'
+              variantColor='linkedin'>
+              New User? Sign Up →
+            </Link>
           </Stack>
         </FormControl>
       </form>

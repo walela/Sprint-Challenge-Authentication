@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link as RRLink } from 'react-router-dom'
 import axios from './axiosWithAuth'
-import { FormControl, Stack, Heading, Input, Button } from '@chakra-ui/core'
+import { FormControl, Stack, Heading, Input, Link, Button } from '@chakra-ui/core'
 
 const api = 'http://localhost:3300/api/auth/register'
 
@@ -76,6 +76,18 @@ function Signup() {
                 onClick={handleSubmit}>
                 Sign Up
               </Button>
+
+              <Link
+                as={RRLink}
+                to='/login'
+                fontFamily='Kurale'
+                fontWeight='bold'
+                fontSize='18px'
+                textAlign='center'
+                color="green.600"
+                >
+                Already registered? Log In →
+              </Link>
             </Stack>
           </FormControl>
         </form>

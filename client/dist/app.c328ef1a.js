@@ -66704,9 +66704,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function Login(props) {
+function Login() {
   var initialValues = {
-    email: '',
+    username: '',
     password: ''
   };
 
@@ -66722,14 +66722,14 @@ function Login(props) {
   };
 
   var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
     (0, _axiosWithAuth.default)().post('http://localhost:3300/api/auth/login', {
-      email: loginValues.username,
+      username: loginValues.username,
       password: loginValues.password
     }).then(function (res) {
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userId', res.data.user.id);
-      localStorage.setItem('firstname', res.data.user.first_name);
-      pageHistory.push('/todos');
+      console.log(res);
+      localStorage.setItem("token", res.data.token);
+      pageHistory.push('/jokes');
     }).catch(function (err) {
       return console.error(err);
     });
@@ -66747,9 +66747,7 @@ function Login(props) {
   }, /*#__PURE__*/_react.default.createElement(_core.Heading, {
     fontFamily: "Domine",
     textAlign: "center"
-  }, "Login"), /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: props.onSubmit
-  }, /*#__PURE__*/_react.default.createElement(_core.FormControl, null, /*#__PURE__*/_react.default.createElement(_core.Stack, {
+  }, "Login"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement(_core.FormControl, null, /*#__PURE__*/_react.default.createElement(_core.Stack, {
     spacing: 5
   }, /*#__PURE__*/_react.default.createElement(_core.Input, {
     placeholder: "Username",
@@ -66770,7 +66768,15 @@ function Login(props) {
     type: "submit",
     w: "100%",
     onClick: handleSubmit
-  }, "Login")))));
+  }, "Login"), /*#__PURE__*/_react.default.createElement(_core.Link, {
+    as: _reactRouterDom.Link,
+    to: "/",
+    fontFamily: "Kurale",
+    fontWeight: "bold",
+    fontSize: "18px",
+    textAlign: "center",
+    variantColor: "linkedin"
+  }, "New User? Sign Up \u2192")))));
 }
 },{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./axiosWithAuth":"axiosWithAuth.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"Signup.js":[function(require,module,exports) {
 "use strict";
@@ -66878,7 +66884,15 @@ function Signup() {
     tyep: "submit",
     w: "100%",
     onClick: handleSubmit
-  }, "Sign Up"))))));
+  }, "Sign Up"), /*#__PURE__*/_react.default.createElement(_core.Link, {
+    as: _reactRouterDom.Link,
+    to: "/login",
+    fontFamily: "Kurale",
+    fontWeight: "bold",
+    fontSize: "18px",
+    textAlign: "center",
+    color: "green.600"
+  }, "Already registered? Log In \u2192"))))));
 }
 
 var _default = Signup;
