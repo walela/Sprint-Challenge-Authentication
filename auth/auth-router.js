@@ -14,7 +14,7 @@ const generateToken = user => {
     expiresIn: 60 * 60
   }
 
-  return jwt.sign(payload, process.env.JWT_SECRET || 'genericsecret', options)
+  return jwt.sign(payload, process.env.JWT_SECRET || 'defaultsecret', options)
 }
 
 const validateCredentials = (req, res, next) => {
