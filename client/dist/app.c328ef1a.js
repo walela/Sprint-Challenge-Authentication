@@ -66976,9 +66976,9 @@ function Jokes() {
       fontFamily: "Domine",
       fontWeight: "bold",
       h: "12",
-      boxShadow: "2px 3px 2px grey",
+      boxShadow: "1px 1px 2px grey",
       bg: "blue.200",
-      borderRadius: "4px",
+      borderRadius: "2px",
       textAlign: "center",
       p: "2"
     }, joke.joke);
