@@ -1,11 +1,15 @@
-const router = require('express').Router();
+const router = require('express').Router()
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
+const db = require('./auth-model');
 
 router.post('/register', (req, res) => {
   // implement registration
-});
+})
 
 router.post('/login', (req, res) => {
   // implement login
-});
+})
 
-module.exports = router;
+module.exports = router
