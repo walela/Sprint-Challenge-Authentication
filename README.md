@@ -63,7 +63,7 @@ Implement an User Authentication System. Hash user's passwords before saving the
 
 - [x] Implement the `register` and `login` functionality inside `/auth/auth-router.js`. A `user` has `username` and `password`. Both properties are required.
 - [x] Implement the `authenticate` middleware inside `/auth/authenticate-middleware.js`.
-- [ ] Write a **minimum o 2 tests** per API endpoint. Write more tests if you have time.
+- [x] Write a **minimum o 2 tests** per API endpoint. Write more tests if you have time.
 
 **Note**: the database already has the users table, but if you run into issues, the migrations are available.
 
@@ -71,5 +71,5 @@ Implement an User Authentication System. Hash user's passwords before saving the
 
 Build a front end to show the jokes.
 
-- [ ] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
-- [ ] Once you have the functionality down, style it!
+- [x] Add a React client that connects to the API and has pages for `Sign Up`, `Sign In` and showing a list of `Jokes`.
+- [x] Once you have the functionality down, style it!
