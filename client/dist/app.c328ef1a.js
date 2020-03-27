@@ -66897,7 +66897,70 @@ function Signup() {
 
 var _default = Signup;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./axiosWithAuth":"axiosWithAuth.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"app.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./axiosWithAuth":"axiosWithAuth.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"Jokes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Jokes;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _axiosWithAuth = _interopRequireDefault(require("./axiosWithAuth"));
+
+var _core = require("@chakra-ui/core");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Jokes() {
+  var api = 'http://localhost:3300/api/jokes';
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      jokes = _useState2[0],
+      setJokes = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    (0, _axiosWithAuth.default)().get(api).then(function (res) {
+      return setJokes(res.data);
+    }).catch(function (err) {
+      return console.error(err);
+    });
+  }, [jokes]);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_core.Grid, {
+    templateColumns: "repeat(1, 1fr)",
+    gap: 3
+  }, /*#__PURE__*/_react.default.createElement(_core.Box, {
+    w: "100%",
+    h: "10",
+    bg: "blue.200"
+  }), jokes.map(function (joke) {
+    return /*#__PURE__*/_react.default.createElement(_core.Box, {
+      key: joke.id,
+      w: "100%",
+      h: "12",
+      bg: "blue.200"
+    }, joke.joke);
+  })));
+}
+},{"react":"node_modules/react/index.js","./axiosWithAuth":"axiosWithAuth.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -66912,6 +66975,8 @@ var _Login = _interopRequireDefault(require("./Login"));
 
 var _Signup = _interopRequireDefault(require("./Signup"));
 
+var _Jokes = _interopRequireDefault(require("./Jokes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
@@ -66919,12 +66984,16 @@ function App() {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Signup.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
     path: "/login"
-  }, /*#__PURE__*/_react.default.createElement(_Login.default, null)))));
+  }, /*#__PURE__*/_react.default.createElement(_Login.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    exact: true,
+    path: "/jokes"
+  }, /*#__PURE__*/_react.default.createElement(_Jokes.default, null)))));
 }
 
 (0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById('root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Login":"Login.js","./Signup":"Signup.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","@chakra-ui/core":"node_modules/@chakra-ui/core/dist/es/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./Login":"Login.js","./Signup":"Signup.js","./Jokes":"Jokes.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -66952,7 +67021,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41117" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39949" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

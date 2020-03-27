@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Login from './Login'
 import Signup from './Signup'
+import Jokes from './Jokes'
 
 function App() {
   return (
@@ -15,8 +16,11 @@ function App() {
           <Route exact path='/'>
             <Signup />
           </Route>
-          <Route path='/login'>
+          <Route exact path='/login'>
             <Login />
+          </Route>
+          <Route exact path='/jokes'>
+            <Jokes />
           </Route>
         </Switch>
       </ThemeProvider>
