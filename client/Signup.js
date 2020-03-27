@@ -3,13 +3,11 @@ import { useHistory } from 'react-router-dom'
 import axios from './axiosWithAuth'
 import { FormControl, Stack, Heading, Input, Button } from '@chakra-ui/core'
 
-const api = 'http://localhost:3000/api/auth/register'
+const api = 'http://localhost:3300/api/auth/register'
 
-function Signup(props) {
+function Signup() {
   const initialValues = {
-    first_name: '',
-    last_name: '',
-    email: '',
+    username: '',
     password: ''
   }
   const [signupValues, setSignupValues] = useState(initialValues)
@@ -26,14 +24,12 @@ function Signup(props) {
     e.preventDefault()
     axios()
       .post(api, {
-        first_name: signupValues.first_name,
-        last_name: signupValues.last_name,
-        email: signupValues.email,
+        username: signupValues.username,
         password: signupValues.password
       })
       .then(res => {
-        localStorage.setItem('token', res.data.token)
-        pageHistory.push('/')
+        console.log(res.data)
+        pageHistory.push('/login')
       })
       .catch(err => console.error(err))
       .finally(setSignupValues(initialValues))
@@ -44,11 +40,13 @@ function Signup(props) {
       <Stack
         spacing={3}
         w='30vw'
-        border='2px solid grey'
-        p={4}
+        px={6}
+        pt={6}
+        pb={72}
         ml='35vw'
-        mt='12vh'>
-        <Heading fontFamily='JetBrains Mono' textAlign='center'>
+        mt='12vh'
+        boxShadow='-2px 1px 5px grey, 1px -1px 5px grey'>
+        <Heading fontFamily='Domine' textAlign='center'>
           Sign Up
         </Heading>
         <form>
@@ -56,10 +54,11 @@ function Signup(props) {
             <Stack spacing={5}>
               <Input
                 type='text'
-                placeholder='First Name'
+                placeholder='Username'
                 name='username'
                 value={signupValues.username}
                 onChange={handleChange}
+                variant='flushed'
               />
               <Input
                 type='password'
@@ -67,9 +66,10 @@ function Signup(props) {
                 name='password'
                 value={signupValues.password}
                 onChange={handleChange}
+                variant='flushed'
               />
               <Button
-                variantColor='whatsapp'
+                variantColor='facebook'
                 size='lg'
                 tyep='submit'
                 w='100%'

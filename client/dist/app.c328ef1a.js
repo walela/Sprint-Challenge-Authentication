@@ -66737,13 +66737,15 @@ function Login(props) {
 
   return /*#__PURE__*/_react.default.createElement(_core.Stack, {
     spacing: 3,
-    border: "2px solid gray",
     w: "30vw",
-    p: 4,
+    px: 6,
+    pt: 6,
+    pb: 72,
     ml: "35vw",
-    mt: "12vh"
+    mt: "12vh",
+    boxShadow: "-2px 1px 5px grey, 1px -1px 5px grey"
   }, /*#__PURE__*/_react.default.createElement(_core.Heading, {
-    fontFamily: "JetBrains Mono",
+    fontFamily: "Domine",
     textAlign: "center"
   }, "Login"), /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: props.onSubmit
@@ -66753,16 +66755,18 @@ function Login(props) {
     placeholder: "Username",
     name: "username",
     value: loginValues.username,
-    onChange: handleChange
+    onChange: handleChange,
+    variant: "flushed"
   }), /*#__PURE__*/_react.default.createElement(_core.Input, {
     type: "password",
     placeholder: "Password",
     name: "password",
     value: loginValues.password,
-    onChange: handleChange
+    onChange: handleChange,
+    variant: "flushed"
   }), /*#__PURE__*/_react.default.createElement(_core.Button, {
     size: "lg",
-    variantColor: "teal",
+    variantColor: "facebook",
     type: "submit",
     w: "100%",
     onClick: handleSubmit
@@ -66808,13 +66812,11 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var api = 'http://localhost:3000/api/auth/register';
+var api = 'http://localhost:3300/api/auth/register';
 
-function Signup(props) {
+function Signup() {
   var initialValues = {
-    first_name: '',
-    last_name: '',
-    email: '',
+    username: '',
     password: ''
   };
 
@@ -66832,13 +66834,11 @@ function Signup(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     (0, _axiosWithAuth.default)().post(api, {
-      first_name: signupValues.first_name,
-      last_name: signupValues.last_name,
-      email: signupValues.email,
+      username: signupValues.username,
       password: signupValues.password
     }).then(function (res) {
-      localStorage.setItem('token', res.data.token);
-      pageHistory.push('/');
+      console.log(res.data);
+      pageHistory.push('/login');
     }).catch(function (err) {
       return console.error(err);
     }).finally(setSignupValues(initialValues));
@@ -66847,29 +66847,33 @@ function Signup(props) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_core.Stack, {
     spacing: 3,
     w: "30vw",
-    border: "2px solid grey",
-    p: 4,
+    px: 6,
+    pt: 6,
+    pb: 72,
     ml: "35vw",
-    mt: "12vh"
+    mt: "12vh",
+    boxShadow: "-2px 1px 5px grey, 1px -1px 5px grey"
   }, /*#__PURE__*/_react.default.createElement(_core.Heading, {
-    fontFamily: "JetBrains Mono",
+    fontFamily: "Domine",
     textAlign: "center"
   }, "Sign Up"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement(_core.FormControl, null, /*#__PURE__*/_react.default.createElement(_core.Stack, {
     spacing: 5
   }, /*#__PURE__*/_react.default.createElement(_core.Input, {
     type: "text",
-    placeholder: "First Name",
+    placeholder: "Username",
     name: "username",
     value: signupValues.username,
-    onChange: handleChange
+    onChange: handleChange,
+    variant: "flushed"
   }), /*#__PURE__*/_react.default.createElement(_core.Input, {
     type: "password",
     placeholder: "Password",
     name: "password",
     value: signupValues.password,
-    onChange: handleChange
+    onChange: handleChange,
+    variant: "flushed"
   }), /*#__PURE__*/_react.default.createElement(_core.Button, {
-    variantColor: "whatsapp",
+    variantColor: "facebook",
     size: "lg",
     tyep: "submit",
     w: "100%",
@@ -66897,7 +66901,7 @@ var _Signup = _interopRequireDefault(require("./Signup"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_core.ThemeProvider, null, /*#__PURE__*/_react.default.createElement(_core.CSSReset, null), /*#__PURE__*/_react.default.createElement("h1", null, "Haha!"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_core.ThemeProvider, null, /*#__PURE__*/_react.default.createElement(_core.CSSReset, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_Signup.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {

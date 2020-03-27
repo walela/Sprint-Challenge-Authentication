@@ -11,7 +11,6 @@ function App() {
     <Router>
       <ThemeProvider>
         <CSSReset />
-        <h1>Haha!</h1>
         <Switch>
           <Route exact path='/'>
             <Signup />
